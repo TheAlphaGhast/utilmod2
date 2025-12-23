@@ -1,0 +1,16 @@
+{
+	"required": true,
+	"package": "dev.ywan.util.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"mixins": [
+		"EntityMixin",
+		"NbtSizeTrackerMixin",
+		"NbtSizeValidationExceptionMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	},
+	"overwrites": {
+		"requireAnnotations": true
+	}
+}
