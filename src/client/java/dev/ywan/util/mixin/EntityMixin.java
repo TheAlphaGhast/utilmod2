@@ -1,5 +1,6 @@
 package dev.ywan.util.mixin;
 
+import dev.ywan.util.Config;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.vehicle.AbstractBoatEntity;
@@ -13,15 +14,8 @@ public class EntityMixin {
 
     @Inject(method = "setYaw", at = @At("HEAD"))
     private void setYaw(float yaw, CallbackInfo ci) {
-        if ((Object) this instanceof ClientPlayerEntity player) {
+        if (Config.getEnabled("boatrotate") && (Object) this instanceof ClientPlayerEntity player) {
             Entity vehicle = player.getControllingVehicle();
-            /*if (!(vehicle instanceof BoatEntity)) {
-                if (vehicle != null) {
-                    ModClient.LOGGER.debug("Skipping non-boat mount: {}", vehicle);
-                }
-                return;
-            }*/
-
             if (vehicle instanceof AbstractBoatEntity) vehicle.setYaw(yaw);
         }
     }

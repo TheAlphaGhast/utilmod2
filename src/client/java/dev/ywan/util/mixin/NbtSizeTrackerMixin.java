@@ -1,8 +1,8 @@
 package dev.ywan.util.mixin;
 
+import dev.ywan.util.Config;
 import dev.ywan.util.ModClient;
 import net.minecraft.nbt.NbtSizeTracker;
-import net.minecraft.nbt.NbtSizeValidationException;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -20,6 +20,7 @@ public class NbtSizeTrackerMixin {
 
     @Inject(method = "add(J)V", at = @At("HEAD"), cancellable = true)
     public void add(long bytes, CallbackInfo ci) {
+        if (!Config.getEnabled("largenbt")) return;
         if (bytes < 0L) {
             throw new IllegalArgumentException("Tried to account NBT tag with negative size: " + bytes);
         } else if (this.allocatedBytes + bytes > this.maxBytes) {

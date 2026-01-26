@@ -3,6 +3,7 @@
 	"package": "dev.ywan.util.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
+		"ChatScreenMixin",
 		"EntityMixin",
 		"NbtSizeTrackerMixin",
 		"NbtSizeValidationExceptionMixin"

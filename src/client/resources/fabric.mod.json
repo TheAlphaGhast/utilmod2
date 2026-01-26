@@ -3,11 +3,11 @@
 	"id": "util",
 	"version": "1.0.0",
 	"name": "UtilMod2",
-	"description": "Util mod for 1.21.10.",
+	"description": "Util mod for 1.21.11.",
 	"authors": [
 		"TheAlphaGhast"
 	],
-	"license": "AGPL-3.0-or-later",
+	"license": "gnu_general_public_license",
 	"environment": "*",
 	"entrypoints": {
 		"client": [
