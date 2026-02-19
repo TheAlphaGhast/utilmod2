@@ -14,6 +14,7 @@ public class EntityMixin {
 
     @Inject(method = "setYaw", at = @At("HEAD"))
     private void setYaw(float yaw, CallbackInfo ci) {
+        //noinspection ConstantValue
         if (Config.getEnabled("boatrotate") && (Object) this instanceof ClientPlayerEntity player) {
             Entity vehicle = player.getControllingVehicle();
             if (vehicle instanceof AbstractBoatEntity) vehicle.setYaw(yaw);

@@ -6,14 +6,13 @@ import net.fabricmc.loader.api.FabricLoader;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 
-import java.nio.file.Path;
-
 
 public class Config {
-    private static Map<String, Boolean> config = new HashMap<>();
+    private static final Map<String, Boolean> configMap = new HashMap<>();
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
     private static final Path CONFIG_PATH = FabricLoader.getInstance()
@@ -22,16 +21,20 @@ public class Config {
     static {
         // default values
         setEnabled("boatrotate", false);
-        setEnabled("largenbt", false);
+        setEnabled("largenbt", true);
+    }
+
+    private Config() {
+        throw new IllegalStateException("Config should not be instantiated");
     }
 
     public static void setEnabled(String name, boolean value) {
-        config.put(name, value);
+        configMap.put(name, value);
         saveConfig();
     }
 
     public static boolean getEnabled(String name) {
-        return config.get(name);
+        return configMap.get(name);
     }
 
     public static void toggle(String name) {
@@ -41,14 +44,14 @@ public class Config {
 
     public static void saveConfig() {
         try (FileWriter writer = new FileWriter(CONFIG_PATH.toFile())) {
-            GSON.toJson(config, writer);
+            GSON.toJson(configMap, writer);
         } catch (IOException e) {
             ModClient.LOGGER.error("Error while saving config", e);
         }
     }
 
     public static void printConfig() {
-        for (Map.Entry<String, Boolean> entry : config.entrySet()) {
+        for (Map.Entry<String, Boolean> entry : configMap.entrySet()) {
             Util.informPlayer(entry.getKey() + ": " + entry.getValue());
         }
     }

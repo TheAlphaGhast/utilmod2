@@ -1,29 +1,29 @@
 {
-	"schemaVersion": 1,
-	"id": "util",
-	"version": "1.0.0",
-	"name": "UtilMod2",
-	"description": "Util mod for 1.21.11.",
-	"authors": [
-		"TheAlphaGhast"
-	],
-	"license": "gnu_general_public_license",
-	"environment": "*",
-	"entrypoints": {
-		"client": [
-			"dev.ywan.util.ModClient"
-		]
-	},
-	"mixins": [
-		{
-			"config": "util.mixins.json",
-			"environment": "client"
-		}
-	],
-	"depends": {
-		"fabricloader": ">=0.17.2",
-		"minecraft": "~1.21.10",
-		"java": ">=21",
-		"fabric-api": "*"
-	}
+  "schemaVersion": 1,
+  "id": "utilmod2",
+  "version": "1.0.0",
+  "name": "UtilMod2",
+  "description": "Util mod for 1.21.11.",
+  "authors": [
+    "TheAlphaGhast"
+  ],
+  "license": "Apache-2.0",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "dev.ywan.util.ModClient"
+    ]
+  },
+  "mixins": [
+    {
+      "config": "util.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=0.17.2",
+    "minecraft": "~1.21.10",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
 }

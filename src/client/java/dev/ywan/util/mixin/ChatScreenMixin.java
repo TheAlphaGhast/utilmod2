@@ -9,8 +9,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.Arrays;
-
 @Mixin(ChatScreen.class)
 public class ChatScreenMixin {
     @Inject(method = "sendMessage", at = @At("HEAD"), cancellable = true)
@@ -30,7 +28,7 @@ public class ChatScreenMixin {
                     ModClient.LOGGER.info(op);
 
                     switch (op) {
-                        case "boatrotate":
+                        case "boatrotate", "largenbt":
                             Util.toggleable(parts);
                             break;
                         default:

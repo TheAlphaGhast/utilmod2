@@ -3,6 +3,10 @@ package dev.ywan.util;
 import net.minecraft.text.Text;
 
 public class Util {
+    private Util() {
+        throw new IllegalStateException("Util should not be instantiated");
+    }
+
     public static void toggleable(String[] parts) {
         if (parts.length == 2) {
             informPlayer("Toggling " + parts[1]);
