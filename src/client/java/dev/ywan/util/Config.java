@@ -34,6 +34,8 @@ public class Config {
     }
 
     public static boolean getEnabled(String name) {
+        // Ensure boatrotate is not being used on servers
+        if ("boatrotate".equals(name) && ModClient.client.getCurrentServerEntry() != null) return false;
         return configMap.get(name);
     }
 

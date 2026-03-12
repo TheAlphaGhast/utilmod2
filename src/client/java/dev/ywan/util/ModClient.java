@@ -12,10 +12,10 @@ public class ModClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        //ClientTickEvents.START_CLIENT_TICK.register(ModClient::tick);
         LOGGER.info("UtilMod loaded!");
     }
 
-    /*private static void tick(MinecraftClient tickClient) {
-    }*/
+    public static boolean alwaysFalse() {
+        return false;
+    }
 }

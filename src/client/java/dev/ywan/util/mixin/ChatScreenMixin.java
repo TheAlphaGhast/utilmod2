@@ -28,7 +28,14 @@ public class ChatScreenMixin {
                     ModClient.LOGGER.info(op);
 
                     switch (op) {
-                        case "boatrotate", "largenbt":
+                        case "boatrotate":
+                            // dont allow boatrotate on servers
+                            if (ModClient.client.getCurrentServerEntry() == null) {
+                                Util.toggleable(parts);
+                            } else {
+                                Util.informPlayer("Boatrotate is not allowed on servers!");
+                            }
+                        case "largenbt":
                             Util.toggleable(parts);
                             break;
                         default:

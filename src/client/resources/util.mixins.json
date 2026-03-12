@@ -5,7 +5,8 @@
   "mixins": [
     "ChatScreenMixin",
     "EntityMixin",
-    "NbtSizeTrackerMixin"
+    "NbtSizeTrackerMixin",
+    "NbtSizeValidationExceptionMixin"
   ],
   "injectors": {
     "defaultRequire": 1
