@@ -21,7 +21,7 @@ public class Config {
     static {
         // default values
         setEnabled("boatrotate", false);
-        setEnabled("largenbt", true);
+        setEnabled("largenbt", false);
     }
 
     private Config() {
@@ -54,6 +54,10 @@ public class Config {
 
     public static void printConfig() {
         for (Map.Entry<String, Boolean> entry : configMap.entrySet()) {
+            if ("boatrotate".equals(entry.getKey()) && ModClient.client.getCurrentServerEntry() != null) {
+                Util.informPlayer("boatrotate: false");
+                continue;
+            }
             Util.informPlayer(entry.getKey() + ": " + entry.getValue());
         }
     }

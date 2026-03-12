@@ -35,6 +35,7 @@ public class ChatScreenMixin {
                             } else {
                                 Util.informPlayer("Boatrotate is not allowed on servers!");
                             }
+                            break;
                         case "largenbt":
                             Util.toggleable(parts);
                             break;
