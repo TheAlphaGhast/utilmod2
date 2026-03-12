@@ -4,9 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import net.fabricmc.loader.api.FabricLoader;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Path;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,13 +13,23 @@ public class Config {
     private static final Map<String, Boolean> configMap = new HashMap<>();
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
-    private static final Path CONFIG_PATH = FabricLoader.getInstance()
-            .getConfigDir().resolve("utilmod.json");
+    private static final File CONFIG_PATH = FabricLoader.getInstance()
+            .getConfigDir().resolve("utilmod.json").toFile();
 
     static {
-        // default values
-        setEnabled("boatrotate", false);
-        setEnabled("largenbt", false);
+        try {
+            FileReader reader = new FileReader(CONFIG_PATH);
+            //noinspection unchecked
+            Map<String, Boolean> parsedConfig = GSON.fromJson(reader, Map.class);
+            configMap.putAll(parsedConfig);
+        } catch (FileNotFoundException e) {
+            //noinspection CallToPrintStackTrace
+            e.printStackTrace();
+        }
+
+            // default values
+            configMap.putIfAbsent("boatrotate", false);
+            configMap.putIfAbsent("largenbt", false);
     }
 
     private Config() {
@@ -45,7 +53,7 @@ public class Config {
 
 
     public static void saveConfig() {
-        try (FileWriter writer = new FileWriter(CONFIG_PATH.toFile())) {
+        try (FileWriter writer = new FileWriter(CONFIG_PATH)) {
             GSON.toJson(configMap, writer);
         } catch (IOException e) {
             ModClient.LOGGER.error("Error while saving config", e);
